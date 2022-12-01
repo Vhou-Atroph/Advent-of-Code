@@ -3,9 +3,21 @@ use std::{env, fs};
 fn main() {
     let args: Vec<String> = env::args().collect();
     let file = fs::read_to_string(args[1].clone()).expect("Could not read to String");
-    let elf_group = Group::parse_input(file);
+    let mut elf_group = Group::parse_input(file);
     let highest_cal = elf_group.highest_cals();
     println!("Elf {} has the highest amount of calories stored, with {} total calories.",highest_cal.1+1,highest_cal.0.sum());
+    let mut top_three = vec![highest_cal.0.sum()];
+    elf_group.elves.remove(highest_cal.1);
+    let mut count = 0;
+    while count < 2 {
+        count+=1;
+        let new_high = elf_group.highest_cals();
+        top_three.push(new_high.0.sum());
+        elf_group.elves.remove(new_high.1);
+    }
+    let mut amount = 0;
+    for count in top_three.iter() {amount+=count;}
+    println!("Together, the top three elves have {} calories stored.",amount)
 }
 
 #[derive(Clone,Debug,PartialEq)]
