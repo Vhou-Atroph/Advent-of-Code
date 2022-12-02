@@ -16,9 +16,9 @@ enum Opponent {
 }
 
 enum MyChoice {
-    X, // Rock (vs. C)
-    Y, // Paper (vs. A)
-    Z // Scissors (vs. B)
+    X, // Lose
+    Y, // Draw
+    Z // Win
 }
 
 struct StrategyGuide(String);
@@ -76,7 +76,6 @@ fn eval(x:Opponent,y:MyChoice) -> u64 {
         (Opponent::A,MyChoice::Z) => return 3, // 3 + 0
         (Opponent::B,MyChoice::X) => return 1, // 1 + 0
         (Opponent::C,MyChoice::Y) => return 2, // 2 + 0
-        _ => return 0
         
     }
 }
@@ -92,7 +91,6 @@ fn eval_part_2(x:Opponent,y:MyChoice) -> u64 {
         (Opponent::A,MyChoice::Z) => return 8, // 2 + 6 (paper win)
         (Opponent::B,MyChoice::X) => return 1, // 1 + 0 (rock lose)
         (Opponent::C,MyChoice::Y) => return 6, // 3 + 3 (scissors draw)
-        _ => return 0
         
     }
 }
