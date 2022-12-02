@@ -5,7 +5,8 @@ fn main() {
     let file = fs::read_to_string(args[1].clone()).expect("Could not read to String");
     let guide = StrategyGuide::new(file);
     let win_count = guide.wincount();
-    println!("{}",win_count)
+    let win_count2 = guide.wincount_real();
+    println!("PART 1:{}\nPART 3:{}",win_count,win_count2)
 }
 
 enum Opponent {
@@ -33,6 +34,15 @@ impl StrategyGuide {
             let opp = parse_opponent(&line[0..=0]);
             let my = parse_my_choice(&line[2..=2]);
             count+=eval(opp,my);
+        } count
+    }
+
+    fn wincount_real(&self) -> u64 {
+        let mut count = 0;
+        for line in self.0.lines() {
+            let opp = parse_opponent(&line[0..=0]);
+            let my = parse_my_choice(&line[2..=2]);
+            count+=eval_part_2(opp,my);
         } count
     }
 }
@@ -66,6 +76,22 @@ fn eval(x:Opponent,y:MyChoice) -> u64 {
         (Opponent::A,MyChoice::Z) => return 3, // 3 + 0
         (Opponent::B,MyChoice::X) => return 1, // 1 + 0
         (Opponent::C,MyChoice::Y) => return 2, // 2 + 0
+        _ => return 0
+        
+    }
+}
+
+fn eval_part_2(x:Opponent,y:MyChoice) -> u64 {
+    match (x,y) {
+        (Opponent::A,MyChoice::Y) => return 4, // 1 + 3 (rock draw)
+        (Opponent::B,MyChoice::Z) => return 9, // 3 + 6 (scissors win)
+        (Opponent::C,MyChoice::X) => return 2, // 2 + 0 (paper lose)
+        (Opponent::A,MyChoice::X) => return 3, // 3 + 0 (scissors lose)
+        (Opponent::B,MyChoice::Y) => return 5, // 2 + 3 (paper draw)
+        (Opponent::C,MyChoice::Z) => return 7, // 1 + 6 (rock win)
+        (Opponent::A,MyChoice::Z) => return 8, // 2 + 6 (paper win)
+        (Opponent::B,MyChoice::X) => return 1, // 1 + 0 (rock lose)
+        (Opponent::C,MyChoice::Y) => return 6, // 3 + 3 (scissors draw)
         _ => return 0
         
     }
