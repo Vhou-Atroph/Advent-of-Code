@@ -7,3 +7,4 @@ Link: <https://adventofcode.com/2022>
 | Day                                                                                 | Language |
 | ----------------------------------------------------------------------------------- | -------- |
 | [1](https://github.com/Vhou-Atroph/Advent-of-Code/blob/main/2022/Day01/src/main.rs) | Rust     |
+| [2](https://github.com/Vhou-Atroph/Advent-of-Code/blob/main/2022/Day02/src/main.rs) | Rust     |
