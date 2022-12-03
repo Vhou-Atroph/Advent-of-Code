@@ -4,7 +4,7 @@ Vhou-Atroph's repository for [Advent of Code](https://adventofcode.com/), an ann
 
 ## License
 
-Copyright © 2000 Vhou-Atroph <vhouatroph@proton.me>
+Copyright © 2000 Vhou-Atroph <vhouatroph@proton.me>  
 This work is free. You can redistribute it and/or modify it under the
 terms of the Do What The Fuck You Want To Public License, Version 2,
 as published by Sam Hocevar. See the LICENSE file for more details.
